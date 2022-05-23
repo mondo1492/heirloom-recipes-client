@@ -16,8 +16,6 @@ import { useEffect } from "react";
 import SearchDropdown from "../components/SearchDropdown";
 import COLORS from "../utils/colors";
 
-const BASE_URL = 'http://localhost:3000'
-
 // TODO: handle all logic here with reducer :)
 export default function CreateOrEditRecipe({ recipe, onSave }) {
     const [ingredients, setIngredients] = useState(recipe?.ingredients || [{ sectionName: '', items: [''] }]);
@@ -82,7 +80,7 @@ export default function CreateOrEditRecipe({ recipe, onSave }) {
     }, [ingredients, steps, sectionInFocus, sectionIdxInFocus])
 
     useEffect(() => {
-        axios.get(`${BASE_URL}/api/v1/tags`)
+        axios.get(`${process.env.REACT_APP_API_URL}/tags`)
             .then(resp => setTags(resp.data))
     }, []);
 

@@ -4,16 +4,13 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from 'react-router-dom';
 
-const BASE_URL = 'http://localhost:3000/'
-
-
 export default function EditRecipe() {
     const [recipe, setRecipe] = useState();
     let { id } = useParams();
     const navigate = useNavigate();
 
     useEffect(() => {
-        axios.get(`${BASE_URL}/api/v1/recipes/${id}`)
+        axios.get(`${process.env.REACT_APP_API_URL}/recipes/${id}`)
             .then(({ data }) => {
                 let selectedTags = {}
                 data.tags.forEach((tag) => {
@@ -42,7 +39,7 @@ export default function EditRecipe() {
 
     const handleSave = (recipeDataForApi) => {
         const saveRecipe = async () => {
-            axios.put(`${BASE_URL}/api/v1/recipes/${id}`, recipeDataForApi)
+            axios.put(`${process.env.REACT_APP_API_URL}/recipes/${id}`, recipeDataForApi)
                 .then(resp => navigate(`/recipes/${resp.data.id}`))
                 .catch(resp => 'Error')
         }

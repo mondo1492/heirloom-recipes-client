@@ -6,9 +6,6 @@ import Table from 'react-bootstrap/Table'
 import Button from 'react-bootstrap/Button'
 import { IoChevronBackOutline } from 'react-icons/io5';
 
-
-const BASE_URL = 'http://localhost:3000'
-
 export default function Recipes() {
     const [recipes, setRecipes] = useState([]);
     const navigate = useNavigate();
@@ -18,7 +15,7 @@ export default function Recipes() {
 
         // declare the async data fetching function
         const fetchData = async () => {
-            const res = await axios.get(`${BASE_URL}/api/v1/recipes`)
+            const res = await axios.get(`${process.env.REACT_APP_API_URL}/recipes`)
             setRecipes(res.data);
         }
 
@@ -28,7 +25,7 @@ export default function Recipes() {
 
     const handleDeleteRecipe = (recipeId, idx) => {
         const deleteRecipe = async () => {
-            const res = await axios.delete(`${BASE_URL}/api/v1/recipes/${recipeId}`)
+            const res = await axios.delete(`${process.env.REACT_APP_API_URL}/recipes/${recipeId}`)
             let newRecipes = [...recipes]
             newRecipes.splice(idx, 1)
             setRecipes(newRecipes);

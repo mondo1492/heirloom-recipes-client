@@ -8,9 +8,6 @@ import Col from "react-bootstrap/Col";
 import Carousel from "react-bootstrap/Carousel";
 import { IoChevronBackOutline } from 'react-icons/io5';
 
-
-const BASE_URL = 'http://localhost:3000/'
-
 export default function Recipe() {
     const { state } = useLocation() || {};
     const navigate = useNavigate();
@@ -19,7 +16,7 @@ export default function Recipe() {
     // const [recipe, setRecipe] = useState(state.recipe);
     const [recipe, setRecipe] = useState();
     useEffect(() => {
-        axios.get(`${BASE_URL}/api/v1/recipes/${id}`)
+        axios.get(`${process.env.REACT_APP_API_URL}/recipes/${id}`)
             .then(resp => setRecipe(resp.data))
     }, []);
 

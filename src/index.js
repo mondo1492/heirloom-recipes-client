@@ -11,7 +11,7 @@ import reportWebVitals from './reportWebVitals';
 import NiceModal from "@ebay/nice-modal-react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-
+console.log(process.env)
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 root.render(
